@@ -1,0 +1,65 @@
+﻿@model SistemaPatrimonio.Models.Patrimonio
+
+@{
+    ViewBag.Title = "Alterar";
+}
+
+<h2>Patrimonio</h2> <!--Titulo de Entidade da Pagina-->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Alterar</h4><!--Titulo de função da Pagina-->
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!--Linha Numero do Patrimonio-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.numeroPatrimonio,"Número Patrimonio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numeroPatrimonio, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" }})
+            </div>
+        </div>
+
+        <!--Linha Setor-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.setor_idSetor, "Setor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("setor_idSetor", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.setor_idSetor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Equipamento-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.equipamento_idEquipamento, "Equipamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("equipamento_idEquipamento", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.equipamento_idEquipamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Funcionario-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.funcionario_idFuncionario, "Funcionário", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("funcionario_idFuncionario", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.funcionario_idFuncionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Botão Salvar-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<!--Linha Retornar-->
+<div>
+    @Html.ActionLink("Retornar", "Index")
+</div>
