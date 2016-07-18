@@ -53,15 +53,25 @@ namespace SistemaPatrimonio.Aplicacao
             return contexto.ExecutaComando(commandText, parameters);
         }
 
+
         public int Alterar(Equipamento equipamento)
         {
-            return 0;
+            var commandText = " UPDATE equipamento SET ";
+            commandText += "nomeEquipamento = @nomeEquipamento, tipoEquipamento = @tipoEquipamento, descricaoEquipamento = @descricaoEquipamento ";
+            commandText += " WHERE idEquipamento = @idEquipamento ";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"idEquipamento", equipamento.idEquipamento},
+                {"nomeEquipamento", equipamento.nomeEquipamento},
+                {"tipoEquipamento", equipamento.tipoEquipamento},
+                {"descricaoEquipamento", equipamento.descricaoEquipamento}
+            };
+
+            return contexto.ExecutaComando(commandText, parameters);
         }
 
-        public int Excluir(int idEquipamento)
-        {
-            return 0;
-        }
+        
 
         public Equipamento ListarPorId(int idEquipamento)
         {

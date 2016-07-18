@@ -140,11 +140,14 @@
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\SistemaPatrimonio.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplicacao\EquipamentoAplicacao.cs" />
@@ -152,6 +155,7 @@
     <Compile Include="Aplicacao\PatrimonioAplicacao.cs" />
     <Compile Include="Aplicacao\SetorAplicacao.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\PatrimonioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +183,9 @@
     <Content Include="Views\Patrimonio\Index.cshtml" />
     <Content Include="Views\Patrimonio\Editar.cshtml" />
     <Content Include="Views\Patrimonio\Excluir.cshtml" />
+    <Content Include="Views\Equipamento\Cadastrar.cshtml" />
+    <Content Include="Views\Equipamento\Index.cshtml" />
+    <Content Include="Views\Equipamento\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

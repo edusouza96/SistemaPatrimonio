@@ -1,0 +1,68 @@
+﻿
+@model PagedList.IPagedList<SistemaPatrimonio.Models.Equipamento>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-header">
+    <h1> <small> </small></h1>
+    <a href="@Url.Action("Cadastrar","Equipamento")" class="btn btn-sm btn-primary">Cadastrar Equipamento</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @using (Html.BeginForm("Index", "Equipamento", FormMethod.Get))
+                {
+                    <p>
+                        Busca Por Nome Equipamento: @Html.TextBox("buscaEquipamento")
+                        <button type="submit" value="Busca" class="glyphicon glyphicon-search" />
+                    </p>
+                }
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome Equipamento</th>
+                            <th>Tipo Equipamento</th>
+                            <th>Descrição Equipamento</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.nomeEquipamento)</td>
+                                <td>@Html.DisplayFor(modelItem => item.tipoEquipamento)</td>
+                                <td>@Html.DisplayFor(modelItem => item.descricaoEquipamento)</td>
+                                <td style="width: 100px">
+                                    <a href="@Url.Action("Editar", "Equipamento", new { IdEquipamento = item.idEquipamento })" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+ new
+ {
+     page
+ }))
