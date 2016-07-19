@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<SistemaPatrimonio.Models.Setor>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-header">
+    <h1> <small> </small></h1>
+    <a href="@Url.Action("Cadastrar","Setor")" class="btn btn-sm btn-primary">Cadastrar Setor</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @using (Html.BeginForm("Index", "Setor", FormMethod.Get))
+                {
+                    <p>
+                        Busca Por Nome Setor: @Html.TextBox("buscaSetor")
+                        <button type="submit" value="Busca" class="glyphicon glyphicon-search" />
+                    </p>
+                }
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome Setor</th>
+                            <th>Localização Setor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.nomeSetor)</td>
+                                <td>@Html.DisplayFor(modelItem => item.localizacaoSetor)</td>
+                                <td style="width: 100px">
+                                    <a href="@Url.Action("Editar", "Setor", new { IdSetor = item.idSetor })" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="@Url.Action("Excluir", "Setor", new { IdSetor = item.idSetor })" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+ new
+ {
+     page
+ }))

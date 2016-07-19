@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\PatrimonioController.cs" />
+    <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +187,10 @@
     <Content Include="Views\Equipamento\Cadastrar.cshtml" />
     <Content Include="Views\Equipamento\Index.cshtml" />
     <Content Include="Views\Equipamento\Editar.cshtml" />
+    <Content Include="Views\Setor\Index.cshtml" />
+    <Content Include="Views\Setor\Cadastrar.cshtml" />
+    <Content Include="Views\Setor\Editar.cshtml" />
+    <Content Include="Views\Setor\Excluir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

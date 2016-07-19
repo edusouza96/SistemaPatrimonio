@@ -28,7 +28,7 @@ namespace SistemaPatrimonio.Controllers
             if (!String.IsNullOrEmpty(buscaEquipamento))
             {
                 page = 1;
-                var listaBusca = lista.Where(s => s.nomeEquipamento.Contains(buscaEquipamento));
+                var listaBusca = lista.Where(s => s.nomeEquipamento.ToUpper().Contains(buscaEquipamento.ToUpper()));
                 return View(listaBusca.ToPagedList(pageNumber, pageSize));
 
             }

@@ -1,7 +1,9 @@
 ﻿using SistemaPatrimonio.Models;
 using SistemaPatrimonio.Repositorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace SistemaPatrimonio.Aplicacao
 {
@@ -51,12 +53,29 @@ namespace SistemaPatrimonio.Aplicacao
 
         public int Alterar(Setor setor)
         {
-           return 0;
+            var commandText = " UPDATE setor SET ";
+            commandText += "nomeSetor = @nomeSetor, localizacaoSetor = @localizacaoSetor";
+            commandText += " WHERE idSetor = @idSetor ";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"idSetor", setor.idSetor},
+                {"nomeSetor", setor.nomeSetor},
+                {"localizacaoSetor", setor.localizacaoSetor}
+            };
+
+            return contexto.ExecutaComando(commandText, parameters);
         }
         
         public int Excluir(int idSetor)
         {
-           return 0;
+            const string strQuery = "DELETE FROM setor WHERE idSetor = @idSetor";
+            var parametros = new Dictionary<string, object>
+            {
+                {"IdSetor", idSetor}
+            };
+
+            return contexto.ExecutaComando(strQuery, parametros);
         }
 
         public Setor ListarPorId(int idSetor)

@@ -1,0 +1,43 @@
+﻿@model SistemaPatrimonio.Models.Setor
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir</h2>
+
+<div>
+    <h4>Excluir</h4><!--Titulo de função da Pagina-->
+    <hr />
+    <dl class="dl-horizontal">
+
+        <!--Nome do Setor-->
+        <dt>
+           @Html.LabelFor(model => model.nomeSetor, "Nome do Setor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeSetor)
+        </dd>
+
+        <!--localização do setor-->
+        <dt>
+            @Html.LabelFor(model => model.localizacaoSetor, "Localização do Setor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.localizacaoSetor)
+        </dd>
+
+    </dl>
+
+    <!--Linha Retornar-->
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Retornar", "Index")
+        </div>
+    }
+</div>
