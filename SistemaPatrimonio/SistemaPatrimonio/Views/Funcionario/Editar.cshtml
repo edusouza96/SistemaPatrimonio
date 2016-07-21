@@ -1,0 +1,57 @@
+﻿@model SistemaPatrimonio.Models.Funcionario
+
+@{
+    ViewBag.Title = "Alterar";
+}
+
+<h2>Funcionario</h2><!--Titulo de Entidade da Pagina-->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Alterar</h4><!--Titulo de função da Pagina-->
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <!--Linha nome funcionario-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.nomeFuncionario,"Nome do Funcionario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nomeFuncionario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nomeFuncionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha telefone do funcionario-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.telefoneFuncionario, "Telefone",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefoneFuncionario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefoneFuncionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha email do funcionario-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.emailFuncionario, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emailFuncionario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emailFuncionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha botão salvar-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<!--Linha Retornar-->
+<div>
+    @Html.ActionLink("Retornar", "Index")
+</div>

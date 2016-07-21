@@ -55,12 +55,30 @@ namespace SistemaPatrimonio.Aplicacao
 
         public int Alterar(Funcionario funcionario)
         {
-            return 0;
+            var commandText = " UPDATE funcionario SET ";
+            commandText += "nomeFuncionario = @nomeFuncionario, telefoneFuncionario = @telefoneFuncionario, emailFuncionario = @emailFuncionario";
+            commandText += " WHERE idFuncionario = @idFuncionario ";
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"idFuncionario", funcionario.idFuncionario},
+                {"nomeFuncionario", funcionario.nomeFuncionario},
+                {"telefoneFuncionario", funcionario.telefoneFuncionario},
+                {"emailFuncionario", funcionario.emailFuncionario}
+            };
+
+            return contexto.ExecutaComando(commandText, parameters);
         }
 
         public int Excluir(int idFuncionario)
         {
-            return 0;
+            const string strQuery = "DELETE FROM funcionario WHERE idFuncionario = @idFuncionario";
+            var parametros = new Dictionary<string, object>
+            {
+                {"IdFuncionario", idFuncionario}
+            };
+
+            return contexto.ExecutaComando(strQuery, parametros);
         }
 
         public Funcionario ListarPorId(int idFuncionario)
