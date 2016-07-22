@@ -150,20 +150,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacao\AssistenciaAplicacao.cs" />
     <Compile Include="Aplicacao\EquipamentoAplicacao.cs" />
     <Compile Include="Aplicacao\FuncionarioAplicacao.cs" />
+    <Compile Include="Aplicacao\ManutencaoAplicacao.cs" />
     <Compile Include="Aplicacao\PatrimonioAplicacao.cs" />
     <Compile Include="Aplicacao\SetorAplicacao.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
+    <Compile Include="Controllers\ManutencaoController.cs" />
     <Compile Include="Controllers\PatrimonioController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Assistencia.cs" />
     <Compile Include="Models\Equipamento.cs" />
     <Compile Include="Models\Funcionario.cs" />
+    <Compile Include="Models\Manutencao.cs" />
     <Compile Include="Models\Patrimonio.cs" />
     <Compile Include="Models\Setor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,6 +201,9 @@
     <Content Include="Views\Funcionario\Cadastrar.cshtml" />
     <Content Include="Views\Funcionario\Excluir.cshtml" />
     <Content Include="Views\Funcionario\Editar.cshtml" />
+    <Content Include="Views\Manutencao\Index.cshtml" />
+    <Content Include="Views\Manutencao\Cadastrar.cshtml" />
+    <Content Include="Views\Manutencao\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

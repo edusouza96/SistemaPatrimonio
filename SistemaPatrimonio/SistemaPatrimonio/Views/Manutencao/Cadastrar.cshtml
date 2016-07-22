@@ -1,0 +1,76 @@
+﻿@model SistemaPatrimonio.Models.Manutencao
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Manutenção</h2><!--Titulo de Entidade da Pagina-->
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Cadastrar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <!--Linha da data Manutenção-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.dataManutencao, "Data", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dataManutencao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dataManutencao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Status da Manutenção-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.statusManutencao, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("statusManutencao", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.statusManutencao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+        <!--Linha Patrimonio-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.patrimonio_idPatrimonio, "Numero do Patrimonio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.patrimonio_idPatrimonio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.patrimonio_idPatrimonio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Assistencia-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.assistencia_idAssistencia,"Nome da Assistencia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("assistencia_idAssistencia", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.assistencia_idAssistencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Problema Manutenção-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.problemaManutencao, "Problema", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.problemaManutencao, 5, 200, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.problemaManutencao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Linha Salvar-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<!--Linha Retornar-->
+<div>
+    @Html.ActionLink("Retornar", "Index")
+</div>
