@@ -1,0 +1,78 @@
+﻿@model PagedList.IPagedList<SistemaPatrimonio.Models.Assistencia>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-header">
+    <h1> <small> </small></h1>
+    <a href="@Url.Action("Cadastrar","Assistencia")" class="btn btn-sm btn-primary">Cadastrar Assistencia</a>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @using (Html.BeginForm("Index", "Assistencia", FormMethod.Get))
+                {
+                    <p>
+                        Busca Por Nome: @Html.TextBox("buscaAssistencia")
+                        <button type="submit" value="Busca" class="glyphicon glyphicon-search" />
+                    </p>
+                }
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cidade</th>
+                            <th>Rua</th>
+                            <th>Nº</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.nomeAssistencia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.cidadeAssistencia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ruaAssistencia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.numeroAssistencia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.telefoneAssistencia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.emailAssistencia)</td>
+                                
+                                <td style="width: 100px">
+                                    <a href="@Url.Action("Editar", "Assistencia", new { IdAssistencia = item.idAssistencia })" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="@Url.Action("Excluir", "Assistencia", new { IdAssistencia = item.idAssistencia })" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+ new
+ {
+     page
+ }))

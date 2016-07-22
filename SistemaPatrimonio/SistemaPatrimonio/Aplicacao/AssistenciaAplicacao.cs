@@ -64,11 +64,12 @@ namespace SistemaPatrimonio.Aplicacao
         public int Alterar(Assistencia assistencia)
         {
             var commandText = " UPDATE assistencia SET ";
-            commandText += "nomeSetor = @nomeAssistencia, emailAssistencia = @emailAssistencia, telefoneAssistencia = @telefoneAssistencia , cidadeAssistencia = @cidadeAssistencia, ruaAssistencia = @ruaAssistencia, numeroAssistencia = @numeroAssistencia";
+            commandText += "nomeAssistencia = @nomeAssistencia, emailAssistencia = @emailAssistencia, telefoneAssistencia = @telefoneAssistencia , cidadeAssistencia = @cidadeAssistencia, ruaAssistencia = @ruaAssistencia, numeroAssistencia = @numeroAssistencia";
             commandText += " WHERE idAssistencia = @idAssistencia ";
 
             var parameters = new Dictionary<string, object>
             {
+                {"idAssistencia", assistencia.idAssistencia},
                 {"nomeAssistencia", assistencia.nomeAssistencia},
                 {"emailAssistencia", assistencia.emailAssistencia},
                 {"telefoneAssistencia", assistencia.telefoneAssistencia},

@@ -157,6 +157,7 @@
     <Compile Include="Aplicacao\PatrimonioAplicacao.cs" />
     <Compile Include="Aplicacao\SetorAplicacao.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AssistenciaController.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\ManutencaoController.cs" />
@@ -204,6 +205,10 @@
     <Content Include="Views\Manutencao\Index.cshtml" />
     <Content Include="Views\Manutencao\Cadastrar.cshtml" />
     <Content Include="Views\Manutencao\Editar.cshtml" />
+    <Content Include="Views\Assistencia\Index.cshtml" />
+    <Content Include="Views\Assistencia\Cadastrar.cshtml" />
+    <Content Include="Views\Assistencia\Editar.cshtml" />
+    <Content Include="Views\Assistencia\Excluir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
