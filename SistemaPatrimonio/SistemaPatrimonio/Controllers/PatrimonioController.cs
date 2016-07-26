@@ -64,11 +64,16 @@ namespace SistemaPatrimonio.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Patrimonio patrimonio)
         {
-            if (ModelState.IsValid)
+            if((patrimonioAplicacao.ListarPorId(patrimonio.numeroPatrimonio)) == null)
             {
-                patrimonioAplicacao.Inserir(patrimonio);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    patrimonioAplicacao.Inserir(patrimonio);
+                    TempData["aviso"] = "Cadastro Realizado!";
+                    return RedirectToAction("Index");
+                }
             }
+            
             var listaSetor = setorAplicacao.ListarTodos();
             var listaEquipamento = equipamentoAplicacao.ListarTodos();
             var listaFuncionario = funcionarioAplicacao.ListarTodos();
@@ -76,6 +81,7 @@ namespace SistemaPatrimonio.Controllers
             ViewBag.setor_idSetor = new SelectList(listaSetor, "idSetor", "nomeSetor", patrimonio.setor_idSetor);
             ViewBag.equipamento_idEquipamento = new SelectList(listaEquipamento, "idEquipamento", "nomeEquipamento", patrimonio.equipamento_idEquipamento);
             ViewBag.funcionario_idFuncionario = new SelectList(listaFuncionario, "idFuncionario", "nomeFuncionario", patrimonio.funcionario_idFuncionario);
+            ViewBag.aviso = "Número de patrimonio já existe";
             return View(patrimonio);
         }
 
@@ -103,6 +109,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 patrimonioAplicacao.Alterar(patrimonio);
+                TempData["aviso"] = "Alteração Realizada!";
                 return RedirectToAction("Index");
             }
             var listaSetor = setorAplicacao.ListarTodos();
@@ -149,6 +156,7 @@ namespace SistemaPatrimonio.Controllers
         public ActionResult ConfirmarExcluir(int numeroPatrimonio)
         {
             patrimonioAplicacao.Excluir(numeroPatrimonio);
+            TempData["aviso"] = "Registro apagado!";
             return RedirectToAction("Index");
         }
     }

@@ -62,6 +62,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 equipamentoAplicacao.Inserir(equipamento);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
            
@@ -98,6 +99,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 equipamentoAplicacao.Alterar(equipamento);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
             

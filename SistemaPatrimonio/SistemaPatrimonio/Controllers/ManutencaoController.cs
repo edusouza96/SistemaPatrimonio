@@ -13,11 +13,13 @@ namespace SistemaPatrimonio.Controllers
     {
         private ManutencaoAplicacao manutencaoAplicacao;
         private AssistenciaAplicacao assistenciaAplicacao;
+        private PatrimonioAplicacao patrimonioAplicacao;
 
         public ManutencaoController()
         {
             manutencaoAplicacao = new ManutencaoAplicacao();
             assistenciaAplicacao = new AssistenciaAplicacao();
+            patrimonioAplicacao = new PatrimonioAplicacao();
         }
         public ActionResult Index(int? page, int? buscaManutencao)
         {
@@ -66,15 +68,18 @@ namespace SistemaPatrimonio.Controllers
             var listaAssistencia = assistenciaAplicacao.ListarTodos();
             ViewBag.assistencia_idAssistencia = new SelectList(listaAssistencia, "idAssistencia", "nomeAssistencia", manutencao.assistencia_idAssistencia);
 
-            if (ModelState.IsValid)
+            if((patrimonioAplicacao.ListarPorId(manutencao.patrimonio_idPatrimonio)) != null)
             {
-                if(manutencao.dataManutencao == null)
-                    manutencao.dataManutencao = DateTime.Now;
-                manutencaoAplicacao.Inserir(manutencao);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    if (manutencao.dataManutencao == null)
+                        manutencao.dataManutencao = DateTime.Now;
+                        manutencaoAplicacao.Inserir(manutencao);
+                        TempData["aviso"] = "Registro Atualizado!";
+                        return RedirectToAction("Index");
+                }
             }
-
-
+            ViewBag.aviso = "Número de patrimonio não cadastrado";
             return View(manutencao);
         }
 
@@ -114,6 +119,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 manutencaoAplicacao.Alterar(manutencao);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 

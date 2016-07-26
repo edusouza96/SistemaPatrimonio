@@ -10,7 +10,7 @@
     <h1> <small> </small></h1>
     <a href="@Url.Action("Cadastrar","Funcionario")" class="btn btn-sm btn-primary">Cadastrar Funcionario</a>
 </div>
-
+<div class="alert-success">@TempData["aviso"]</div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -47,9 +47,9 @@
                                     <a href="@Url.Action("Editar", "Funcionario", new { IdFuncionario = item.idFuncionario })" class="btn btn-info btn-sm">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <a href="@Url.Action("Excluir", "Funcionario", new { IdFuncionario = item.idFuncionario })" class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger excluir" data-id="@item.idFuncionario">
                                         <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>
@@ -61,6 +61,9 @@
     </div>
 </div>
 <br />
+<div class="modal" id="modal">
+
+</div>
 
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
 @Model.PageCount
@@ -69,3 +72,16 @@ Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
  {
      page
  }))
+
+@section scripts{
+    <script>
+          $(function () {
+              $(".excluir").click(function () {
+                  var id = $(this).attr("data-id")
+                  $("#modal").load("../Funcionario/Excluir?idFuncionario="+id, function () {
+                      $("#modal").modal();
+                  })
+              });
+          });
+    </script>
+}

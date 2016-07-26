@@ -11,7 +11,7 @@
     <a href="@Url.Action("Cadastrar","Setor")" class="btn btn-sm btn-primary">Cadastrar Setor</a>
 </div>
 
-
+<div class="alert-success">@TempData["aviso"]</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -44,9 +44,10 @@
                                     <a href="@Url.Action("Editar", "Setor", new { IdSetor = item.idSetor })" class="btn btn-info btn-sm">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <a href="@Url.Action("Excluir", "Setor", new { IdSetor = item.idSetor })" class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger excluir" data-id="@item.idSetor">
                                         <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
+                                    </button>
+                                    
 
                                 </td>
                             </tr>
@@ -58,6 +59,9 @@
     </div>
 </div>
 <br />
+<div class="modal" id="modal">
+
+</div>
 
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
 @Model.PageCount
@@ -66,3 +70,15 @@ Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
  {
      page
  }))
+@section scripts{
+    <script>
+          $(function () {
+              $(".excluir").click(function () {
+                  var id = $(this).attr("data-id")
+                  $("#modal").load("../Setor/Excluir?idSetor="+id, function () {
+                      $("#modal").modal();
+                  })
+              });
+          });
+    </script>
+}

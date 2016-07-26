@@ -4,59 +4,72 @@
     ViewBag.Title = "Excluir";
 }
 
-<h2>Patrimonio</h2> <!--Titulo de Entidade da Pagina-->
 
-<div>
-    <h4>Excluir</h4><!--Titulo de função da Pagina-->
-    <hr />
-    <dl class="dl-horizontal">
-
-        <!--Linha Numero do Patrimonio-->
-        <dt>
-            @Html.LabelFor(model => model.numeroPatrimonio, "Número Patrimonio")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.numeroPatrimonio)
-        </dd>
-
-        <!--Linha Setor-->
-        <dt>
- 
-            @Html.LabelFor(model => model.setor_idSetor, "Setor")
-        </dt>
-
-        <dd>
-            @Html.Display("setor_idSetor")
-        </dd>
-
-        <!--Linha Equipamento-->
-        <dt>
-            @Html.LabelFor(model => model.equipamento_idEquipamento, "Equipamento")
-        </dt>
-
-        <dd>
-            @Html.Display("equipamento_idEquipamento")
-        </dd>
-
-        <!--Linha Funcionario-->
-        <dt>
-            @Html.LabelFor(model => model.funcionario_idFuncionario, "Funcionário")
-        </dt>
-
-        <dd>
-            @Html.Display("funcionario_idFuncionario")
-        </dd>
-
-    </dl>
-
-    <!--Linha Retornar-->
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Deletar" class="btn btn-default" /> |
-            @Html.ActionLink("Retornar", "Index")
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"></h4>
         </div>
-    }
+        <div class="modal-body">
+            <h2>Deseja Realmente Excluir?</h2>
+            <div>
+
+                <hr />
+                <dl class="dl-horizontal">
+
+                    <!--Linha Numero do Patrimonio-->
+                    <dt>
+                        @Html.LabelFor(model => model.numeroPatrimonio, "Número Patrimonio")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.numeroPatrimonio)
+                    </dd>
+
+                    <!--Linha Setor-->
+                    <dt>
+
+                        @Html.LabelFor(model => model.setor_idSetor, "Setor")
+                    </dt>
+
+                    <dd>
+                        @Html.Display("setor_idSetor")
+                    </dd>
+
+                    <!--Linha Equipamento-->
+                    <dt>
+                        @Html.LabelFor(model => model.equipamento_idEquipamento, "Equipamento")
+                    </dt>
+
+                    <dd>
+                        @Html.Display("equipamento_idEquipamento")
+                    </dd>
+
+                    <!--Linha Funcionario-->
+                    <dt>
+                        @Html.LabelFor(model => model.funcionario_idFuncionario, "Funcionário")
+                    </dt>
+
+                    <dd>
+                        @Html.Display("funcionario_idFuncionario")
+                    </dd>
+
+                </dl>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Sim" class="btn btn-default" />
+                    <a href="@Url.Action("Index","Patrimonio")" class="btn btn-default">Não</a>
+                </div>
+            }
+
+        </div>
+    </div>
 </div>

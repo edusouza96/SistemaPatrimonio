@@ -12,10 +12,13 @@
     <h1> <small> </small></h1>
     <a href="@Url.Action("Cadastrar","Patrimonio")" class="btn btn-sm btn-primary">Cadastrar Patrimonio</a>
 </div>
-
+<div class="alert-success">@TempData["aviso"]</div>
 <div class="row">
+    
     <div class="col-lg-12">
+        
         <div class="panel panel-default">
+            
             <div class="panel-heading">
                 @using (Html.BeginForm("Index", "Patrimonio", FormMethod.Get))
                 {
@@ -49,9 +52,9 @@
                                     <a href="@Url.Action("Editar", "Patrimonio", new { NumeroPatrimonio = item.numeroPatrimonio })" class="btn btn-info btn-sm">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <a href="@Url.Action("Excluir", "Patrimonio", new { NumeroPatrimonio = item.numeroPatrimonio })" class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger excluir" data-id="@item.numeroPatrimonio">
                                         <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -62,6 +65,9 @@
     </div>
 </div>
 <br />
+<div class="modal" id="modal">
+
+</div>
 
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
 @Model.PageCount
@@ -70,6 +76,22 @@ Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
  {
      page
  }))
+
+@section scripts{
+    <script>
+          $(function () {
+              $(".excluir").click(function () {
+                  var id = $(this).attr("data-id")
+                  $("#modal").load("../Patrimonio/Excluir?numeroPatrimonio="+id, function () {
+                      $("#modal").modal();
+                  })
+              });
+          });
+    </script>
+}
+
+
+
 
 
 

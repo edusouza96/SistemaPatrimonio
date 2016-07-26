@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using SistemaPatrimonio.Util;
 
 namespace SistemaPatrimonio.Repositorio
 {
@@ -32,6 +33,11 @@ namespace SistemaPatrimonio.Repositorio
                 AbrirConexao();
                 var cmdComando = CriarComando(comandoSQL, parametros);
                 resultado = cmdComando.ExecuteNonQuery();
+               
+            }
+            catch(Exception ex)
+            {
+                Log.log(""+ex);
             }
             finally
             {
@@ -69,6 +75,10 @@ namespace SistemaPatrimonio.Repositorio
                         linhas.Add(linha);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.log("" + ex);
             }
             finally
             {

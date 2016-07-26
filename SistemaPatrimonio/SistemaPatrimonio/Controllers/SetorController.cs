@@ -49,6 +49,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 setorAplicacao.Inserir(setor);
+                TempData["aviso"] = "Setor Caadastrado!";
                 return RedirectToAction("Index");
             }
 
@@ -73,6 +74,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 setorAplicacao.Alterar(setor);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +95,7 @@ namespace SistemaPatrimonio.Controllers
         public ActionResult ConfirmarExcluir(int idSetor)
         {
             setorAplicacao.Excluir(idSetor);
+            TempData["aviso"] = "Registro apagado!";
             return RedirectToAction("Index");
         }
     }

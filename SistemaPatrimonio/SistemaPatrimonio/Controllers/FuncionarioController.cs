@@ -50,6 +50,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 funcionarioAplicacao.Inserir(funcionario);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 
@@ -74,6 +75,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 funcionarioAplicacao.Alterar(funcionario);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 
@@ -94,6 +96,7 @@ namespace SistemaPatrimonio.Controllers
         public ActionResult ConfirmarExcluir(int idFuncionario)
         {
             funcionarioAplicacao.Excluir(idFuncionario);
+            TempData["aviso"] = "Registro Atualizado!";
             return RedirectToAction("Index");
         }
     }

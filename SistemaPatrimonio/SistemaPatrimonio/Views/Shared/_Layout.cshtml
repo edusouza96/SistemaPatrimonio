@@ -12,18 +12,25 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <a href="~/Patrimonio">
+                    <img src="~/Img/vita.png" height="60" width="200" />
+                    <span class="navbar-brand"></span>
+                </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="~/Patrimonio">
-                    <img src="~/Img/vita.png" height="60" width="200" />
-                    <span  class = "navbar-brand"></span>
-                </a>
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Assistencia", "Index", "Assistencia")</li>
+                    <li>@Html.ActionLink("Equipamento", "Index", "Equipamento")</li>
+                    <li>@Html.ActionLink("Funcionario", "Index", "Funcionario")</li>
+                    <li>@Html.ActionLink("Manutenção", "Index", "Manutencao")</li>
+                    <li>@Html.ActionLink("Patrimonio", "Index", "Patrimonio")</li>
+                    <li>@Html.ActionLink("Setor", "Index", "Setor")</li>
                 </ul>
             </div>
         </div>
@@ -39,5 +46,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

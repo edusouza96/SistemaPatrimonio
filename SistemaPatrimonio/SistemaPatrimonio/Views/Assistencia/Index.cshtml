@@ -11,7 +11,7 @@
     <a href="@Url.Action("Cadastrar","Assistencia")" class="btn btn-sm btn-primary">Cadastrar Assistencia</a>
 </div>
 
-
+<div class="alert-success">@TempData["aviso"]</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -54,9 +54,10 @@
                                     <a href="@Url.Action("Editar", "Assistencia", new { IdAssistencia = item.idAssistencia })" class="btn btn-info btn-sm">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <a href="@Url.Action("Excluir", "Assistencia", new { IdAssistencia = item.idAssistencia })" class="btn btn-danger btn-sm">
+                                    
+                                    <button class="btn btn-danger excluir" data-id="@item.idAssistencia">
                                         <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>
@@ -68,7 +69,9 @@
     </div>
 </div>
 <br />
+<div class="modal" id="modal">
 
+</div>
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
 @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index",
@@ -76,3 +79,15 @@ Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
  {
      page
  }))
+@section scripts{
+    <script>
+          $(function () {
+              $(".excluir").click(function () {
+                  var id = $(this).attr("data-id")
+                  $("#modal").load("../Assistencia/Excluir?idAssistencia="+id, function () {
+                      $("#modal").modal();
+                  })
+              });
+          });
+    </script>
+}

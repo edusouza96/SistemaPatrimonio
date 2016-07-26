@@ -49,6 +49,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 assistenciaAplicacao.Inserir(assistencia);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 
@@ -73,6 +74,7 @@ namespace SistemaPatrimonio.Controllers
             if (ModelState.IsValid)
             {
                 assistenciaAplicacao.Alterar(assistencia);
+                TempData["aviso"] = "Registro Atualizado!";
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +95,7 @@ namespace SistemaPatrimonio.Controllers
         public ActionResult ConfirmarExcluir(int idAssistencia)
         {
             assistenciaAplicacao.Excluir(idAssistencia);
+            TempData["aviso"] = "Registro Atualizado!";
             return RedirectToAction("Index");
         }
     }
